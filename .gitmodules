@@ -1,0 +1,3 @@
+[submodule "tatem-core"]
+	path = tatem-core
+	url = https://denys_dovganych@bitbucket.org/tatemgames/tatem-core.git

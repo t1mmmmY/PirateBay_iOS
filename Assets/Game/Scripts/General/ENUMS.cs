@@ -1,0 +1,54 @@
+﻿
+public enum TEAM
+{
+	WHITE_TEAM,
+	BLACK_TEAM
+}
+
+public enum ACTIONS
+{
+	SELECT,
+	MOVE,
+	BEAT,
+	DIE,
+	EMPTY_CELL,
+	NOTHING,
+	REVERT_MOVE,
+	REVERT_BEAT
+}
+
+public enum PLAYER_TYPE
+{
+	USER,
+	AI
+}
+
+public enum DIFFICULT
+{
+	NORMAL = 2,
+	INTERESTING = 4,
+	SUPERMAN = 6
+	//,IMPOSSIBLE = 8
+}
+
+public enum PAWN_TYPE
+{
+	PAWN = 151,
+	DIAGONAL = 150,
+	KING = 200
+}
+
+public enum CELL_TYPE
+{
+	EMPTY = 0,
+	WHITE_PAWN = 11,
+	WHITE_DIAGONAL = 20,
+	WHITE_KING = 40,
+	BLACK_PAWN = 41,
+	BLACK_DIAGONAL = 50,
+	BLACK_KING = 70,
+	SELECTED_FIGURE = 71,
+	INACTIVE_CELL = 202,
+	POSSIBLE_PATH = 1,
+	POSSIBLE_HIT = 2
+}
