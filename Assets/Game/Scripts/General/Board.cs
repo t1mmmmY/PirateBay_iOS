@@ -10,6 +10,9 @@ public class Board : MonoBehaviour
 	[Vector2Range(3, 20, 3, 20)]
 	public Vector2 boardSize = Vector2.zero; 
 
+	public Material cellMaterial;
+	private float startA;
+
 	private static Cell[,] allCells;
 	public static CELL_TYPE[,] GetBoardState()
 	{
@@ -35,6 +38,44 @@ public class Board : MonoBehaviour
 			}
 		}
 		SaveTableState(allCells);
+
+		if (cellMaterial != null)
+		{
+			startA = cellMaterial.color.a;
+			StartCoroutine("EnableBoard");
+		}
+	}
+
+	void OnDestroy()
+	{
+		if (cellMaterial != null)
+		{
+			Color color = cellMaterial.color;
+			color.a = startA;
+			cellMaterial.color = color;
+		}
+	}
+
+	IEnumerator EnableBoard()
+	{
+		Color color = cellMaterial.color;
+		color.a = 0.0f;
+		cellMaterial.color = color;
+
+		yield return new WaitForSeconds(1.0f);
+
+		do
+		{
+			color = cellMaterial.color;
+			color.a += Time.deltaTime * startA;
+			cellMaterial.color = color;
+			yield return null;
+
+		} while (color.a <= startA);
+
+		color = cellMaterial.color;
+		color.a = startA;
+		cellMaterial.color = color;
 	}
 
 
