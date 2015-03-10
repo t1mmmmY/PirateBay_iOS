@@ -66,7 +66,8 @@ public class StateMachine : MonoBehaviour
 			Loom.QueueOnMainThread( () =>
 			                       {
 				PlayerPrefs.SetInt("PointState_" + (Application.loadedLevel - 1).ToString(), 1);
-				NGUITools.SetActive(winnerPanel, true);
+				StartCoroutine("ShowPanel", winnerPanel);
+				//NGUITools.SetActive(winnerPanel, true);
 			}
 			);
 //			winnerPanel.gameObject.SetActive(true);
@@ -76,10 +77,18 @@ public class StateMachine : MonoBehaviour
 			Loom.QueueOnMainThread( () =>
 			                       {
 				//PlayerPrefs.SetInt("PointState_" + (Application.loadedLevel - 1).ToString(), 1);
-				NGUITools.SetActive(loserPanel, true);
+				StartCoroutine("ShowPanel", loserPanel);
+				//NGUITools.SetActive(loserPanel, true);
 			}
 			);
 		}
+	}
+
+	IEnumerator ShowPanel(GameObject panel)
+	{
+		yield return new WaitForSeconds(1);
+
+		NGUITools.SetActive(panel, true);
 	}
 
 	IEnumerator StartGameTest()
@@ -92,6 +101,8 @@ public class StateMachine : MonoBehaviour
 
 	public void Back()
 	{
+		Board.UnselectFigure();
+
 		if (possibleBack)
 		{
 			GameHistory.RevertLastTurn();
@@ -124,6 +135,7 @@ public class StateMachine : MonoBehaviour
 	{
 		Loom.Destroy();
 		StopCoroutine("PossibleBackTimer");
+		Board.UnselectFigure();
 		GameController.Restart(playerWhiteType, playerBlackType);
 	}
 

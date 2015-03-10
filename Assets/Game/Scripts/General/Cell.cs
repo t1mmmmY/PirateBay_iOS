@@ -160,10 +160,13 @@ public class Cell : MonoBehaviour
 
 	void OnDisablePath()
 	{
-		iTween.ColorTo(pathHeiglighter.gameObject, Color.clear, 0.5f);
+		if (pathHeiglighter != null)
+		{
+			iTween.ColorTo(pathHeiglighter.gameObject, Color.clear, 0.5f);
 
-		anim.SetTrigger(pathDisabledHash);
-		_possiblePath = false;
+			anim.SetTrigger(pathDisabledHash);
+			_possiblePath = false;
+		}
 
 		GameController.OnDisablePath -= OnDisablePath;
 	}

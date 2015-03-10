@@ -63,6 +63,7 @@ public static class GameController
 
 	public static void Restart(PLAYER_TYPE whitePlayerT, PLAYER_TYPE blackPlayerT)
 	{
+		//Board.UnselectFigure();
 		StartGame(whitePlayerT, blackPlayerT);
 
 		if (OnRestart != null)
