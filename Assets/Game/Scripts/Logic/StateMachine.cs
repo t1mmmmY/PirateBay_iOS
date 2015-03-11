@@ -124,9 +124,9 @@ public class StateMachine : MonoBehaviour
 
 	public void NextLevel()
 	{
-		ResetState();
 		if (GameController.CanLoadLevel(Application.loadedLevel+1))
 		{
+			ResetState();
 			Application.LoadLevel(Application.loadedLevel+1);
 		}
 	}

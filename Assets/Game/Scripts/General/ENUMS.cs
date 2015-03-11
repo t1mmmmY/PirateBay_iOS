@@ -33,7 +33,7 @@ public enum DIFFICULT
 
 public enum PAWN_TYPE
 {
-	PAWN = 151,
+	PAWN = 160,
 	DIAGONAL = 150,
 	KING = 200
 }
